@@ -6,7 +6,7 @@ Persona1 y 2
  DNI
  Colores (3 colores) -> array
 
-funcion que diga el nombre de la persona con mas edad
+funcion que diga el nombre de la persona con mas edad, y si le gusta o no el color azul
 */
 
 let Persona1 = {
@@ -14,19 +14,17 @@ let Persona1 = {
     apellido : 'Juarez',
     edad : 22,
     dni : 87654321,
-    colores : ['rojo','azul','amarillo']
+    colores : ['Rojo','Azul','Amarillo']
 };
 let Persona2 = {
     nombre : 'Jaimito',
     apellido : 'Rodriguez',
     edad : 65,
     dni : 12345678,
-    colores : ['verde','celeste','violeta']
+    colores : ['Verde','Celeste','Violeta']
 };
 
 function comparar(p1,p2) {
-    console.log('La persona mas grande de edad es: ', p1.edad > p2.edad ? p1.nombre : p2.nombre)
+    console.log('La persona mas grande de edad es:', (p1.edad > p2.edad ? p1.nombre+(p1.colores.includes('Azul') ? ', Si' : ', No') : p2.nombre+(p2.colores.includes('Azul') ? ', Si' : ', No')), 'le gusta el color azul.')
 }
 comparar(Persona1,Persona2);
-
-// falta lo de si le gusta el azul (estuve ayudando gente)
