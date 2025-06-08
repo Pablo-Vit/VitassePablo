@@ -26,7 +26,7 @@ let btn1 = false;
 let btn2 = false;
 
 // Funciones
-function createTeam(id, pos) {
+function getPokemon(id, pos) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(response => response.json())
         .then(data => {
@@ -46,22 +46,41 @@ function createTeam(id, pos) {
                 team2At += data.stats[1].base_stat;
                 team2De += data.stats[2].base_stat;
             }
-            document.getElementById("pk" + pos).innerText = data.name;
+            drawCard(basePK, pos)
         });
 }
 
+function drawCard(info, pos) {
+    const td = document.getElementById('pk'+pos);
+    td.innerHTML = `<img src="${info.img}" alt="${info.name} photo" class="avatar">
+                        <div class="info">
+                            <p>${info.name}</p>
+                            <p>Attack: ${info.attack}</p>
+                            <p>Defense: ${info.defense}</p>
+                        </div>`
+}
+
+function drawWinner(winner) {
+    let isteam1 = winner == 1;
+    console.log(isteam1)
+    // Resaltar en verde al ganador
+    document.getElementById('team'+ (isteam1 ? 1 : 2)).style = 'background-color: #33FF33;';
+    // Resaltar en rojo al perdedor
+    document.getElementById('team'+ (isteam1 ? 2 : 1)).style = 'background-color: red;';
+    
+}
 
 function fight() {
     if (team2Bool && team1Bool) {
         if (team1At - team2De > team2At - team1De) {
-            alert(`Equipo ganador: Equipo 1 \nAt:${team1At} De:${team1De} vs At:${team2At} De:${team2De}`);
+            drawWinner(1);
         } else if (team2At - team1De > team1At - team2De) {
-            alert(`Equipo ganador: Equipo 2 \nAt:${team2At} De:${team2De} vs At:${team1At} De:${team1De}`);
+            drawWinner(2);
         } else {
             if (team1dados > team2dados) {
-                alert(`Gana equipo 1 por dados \n${team1dados} vs ${team2dados}`);
+                drawWinner(1);
             } else if (team2dados > team1dados) {
-                alert(`Gana equipo 2 por dados \n${team2dados} vs ${team1dados}`);
+                drawWinner(2);
             } else {
                 alert(`Nueva ronda de dados por empate \n1:${team1dados} y 2:${team2dados}`);
                 while (team1dados == team2dados) {
@@ -106,22 +125,28 @@ function dados(dado, valor) {
 // eventos
 
 btnTeam1.addEventListener("click", function () {
+    document.getElementById('team1').style = 'background-color: #FFFF99AA;';
+    document.getElementById('team2').style = 'background-color: #FFFF99AA;';
     team1Bool = true;
+    team1.length = 0;
     team1At = 0;
     team1De = 0;
     for (let i = 1; i <= 3; i++) {
         let id = Math.floor(Math.random() * 1025) + 1;
-        createTeam(id, i);
+        getPokemon(id, i);
     }
 });
 
 btnTeam2.addEventListener("click", function () {
+    document.getElementById('team1').style = 'background-color: #FFFF99AA;';
+    document.getElementById('team2').style = 'background-color: #FFFF99AA;';
     team2Bool = true;
+    team2.length = 0;
     team2At = 0;
     team2De = 0;
     for (let i = 4; i <= 6; i++) {
         let id = Math.floor(Math.random() * 1025) + 1;
-        createTeam(id, i);
+        getPokemon(id, i);
     }
 
 });
@@ -184,13 +209,4 @@ team2De = 1;
 team1Bool = true;
 team2Bool = true;
 fight(); 
-*/
-/*
-let timer = 300;
-let cantsprites = 4;
-for (let i = 1; i <= cantsprites; i++) {
-setTimeout(() => {
-document.getElementById(y + '-' + x).innerHTML = '<img src="imgs/ficha' + color + '-' + i + '.png" alt="ficha">';
-}, timer * i);
-}
 */
