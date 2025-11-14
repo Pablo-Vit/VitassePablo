@@ -1,0 +1,66 @@
+<script>
+    fetch('php/auth/checklogin.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        if (!data.success) {
+            window.location.href = 'login/';
+            return;
+        }
+    })
+</script>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pedidos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/tarjetas.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">Pedidos realizados</div>
+    <div class="search-wrap">
+      
+    </div>
+    <div class="actions" id="actions">
+      <button class="icon-btn" onclick="window.location.href = 'carrito.html'">🛒 <span class="badge" id="carritocount"></span></button>
+      <button onclick="fetch('php/auth/logout.php'); window.location.href = 'login/';" class="logout">Logout</button>
+    </div>
+  </header>
+
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="Menú principal">
+      <nav>
+        <ul>
+            <li><a href="..">Catálogo</a></li>
+            <li><a href="carrito.html">Carrito</a></li>
+            <li><a class="active">Pedidos</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="lista">
+        <h2>Pedidos realizados:</h2>
+        <p>*En la cantidad de cada producto en los pedidos dice x(de y), "y" es la cantidad elegida al hacer el pedido y "x" es la cantidad final.</p>
+        <p>La cantidad final cambia al ser aceptado el pedido y esta sujeta a stock*</p>
+        <div id="contenido" class="grid">
+        </div>
+    </div>
+    </main>
+</body>
+</html>
+<script type="module" src="pedidosscript.js"></script>

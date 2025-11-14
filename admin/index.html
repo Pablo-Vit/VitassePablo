@@ -1,0 +1,32 @@
+<script src="checkadmin.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seccion admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button class="volver" onclick="window.location.href = '../'">Volver</button>
+    </header>
+    <div class="pagina">
+        <div class="menu">
+            <h2>Acciones:</h2>
+            <select class="menu-select" onchange="cambiarMenu(this.value);">
+                <option value="nada">N/A</option>
+                <option value="productos">Productos</option>
+                <option value="pedidos">Pedidos</option>
+                <option value="listados">Listados</option>
+            </select>
+            <div class="menu-acciones" id="menuacciones">
+                
+            </div>
+        </div>
+        <div class="contenido" id="contenido">
+        </div>
+    </div>
+</body>
+</html>
+<script src="script.js"></script>

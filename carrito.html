@@ -1,0 +1,60 @@
+<script>
+    fetch('php/auth/checklogin.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        if (!data.success) {
+            window.location.href = 'login/';
+            return;
+        }
+    })
+</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/tarjetas.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">Carrito</div>
+    <div class="search-wrap">
+      
+    </div>
+    <div class="actions" id="actions">
+      <button class="icon-btn">🛒 <span class="badge" id="carritocount"></span></button>
+      <button onclick="fetch('php/auth/logout.php'); window.location.href = 'login/';" class="logout">Logout</button>
+    </div>
+  </header>
+
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="Menú principal">
+      <nav>
+        <ul>
+            <li><a href="..">Catálogo</a></li>
+            <li><a class="active">Carrito</a></li>
+            <li><a href="pedidos.html">Pedidos</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="lista">
+        <h2>Pedidos realizados:</h2>
+        <div id="enviar" class="enviar"></div>
+        <div id="contenido" class="grid">
+        </div>
+    </div>
+    </main>
+</body>
+</html>
+<script type="module" src="carritoscript.js"></script>

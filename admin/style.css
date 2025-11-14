@@ -1,0 +1,47 @@
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: #6d6d6d;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    background-color: #474747;
+    padding: 5px;
+    margin-left: 0px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+.menu-acciones{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.menu-opc{
+    margin-top: 5px;
+}
+.contenido{
+    margin-top: 5px;
+    margin-left: 15px;
+}
+.listapedidos{
+    display: ruby;
+}
+.listaProds{
+    display: ruby;
+}
+.volver{
+    border-radius: 5px;
+    background-color: lightslategray;
+}
+.pagina{
+    height: 95%;
+    width: 100%;
+    display: flex;
+}
+input{
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    align-self: center;
+}
